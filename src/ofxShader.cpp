@@ -1,4 +1,6 @@
 #include "ofxShader.h"
+#include "ofApp.h"
+
 
 ofxShader::ofxShader() {
     m_bWatchingFiles = false;
@@ -9,6 +11,69 @@ ofxShader::ofxShader() {
     m_uniformsFunctions["u_time"] = UniformFunction( [](ofShader* _shader) {
         _shader->setUniform1f("u_time", ofGetElapsedTimef());
     });
+    
+    m_uniformsFunctions["u_mode"] = UniformFunction( [](ofShader* _shader) {
+        _shader->setUniform1f("u_mode", u_mode);
+    });
+
+    m_uniformsFunctions["u_snowHeight"] = UniformFunction( [](ofShader* _shader) {
+        _shader->setUniform1f("u_snowHeight", snowHeight);
+    });
+
+    m_uniformsFunctions["u_season"] = UniformFunction( [](ofShader* _shader) {
+        _shader->setUniform1i("u_season", season);
+    });
+    
+    m_uniformsFunctions["u_waterMode"] = UniformFunction( [](ofShader* _shader) {
+        _shader->setUniform1i("u_waterMode", waterMode);
+    });
+
+
+    m_uniformsFunctions["u_width"] = UniformFunction( [](ofShader* _shader) {
+        _shader->setUniform1f("u_width", meshX);
+    });
+
+    m_uniformsFunctions["u_length"] = UniformFunction( [](ofShader* _shader) {
+        _shader->setUniform1f("u_length", meshY);
+    });
+
+    m_uniformsFunctions["u_height"] = UniformFunction( [](ofShader* _shader) {
+        _shader->setUniform1f("u_height", meshZ);
+    });
+    
+    m_uniformsFunctions["u_cloud"] = UniformFunction( [](ofShader* _shader) {
+        _shader->setUniform1f("u_cloud", cloudAmount);
+    });
+    
+    m_uniformsFunctions["u_lineDarkness"] = UniformFunction( [](ofShader* _shader) {
+        _shader->setUniform1f("u_lineDarkness", lineDarkness);
+    });
+    
+    m_uniformsFunctions["u_mAlpha"] = UniformFunction( [](ofShader* _shader) {
+        _shader->setUniform1f("u_mAlpha", mAlpha);
+    });
+
+    m_uniformsFunctions["u_wAlpha"] = UniformFunction( [](ofShader* _shader) {
+        _shader->setUniform1f("u_wAlpha", wAlpha);
+    });
+
+    m_uniformsFunctions["u_mBrightness"] = UniformFunction( [](ofShader* _shader) {
+        _shader->setUniform1f("u_mBrightness", mBrightness);
+    });
+
+    m_uniformsFunctions["u_mSaturation"] = UniformFunction( [](ofShader* _shader) {
+        _shader->setUniform1f("u_mSaturation", mSaturation);
+    });
+
+    
+    m_uniformsFunctions["u_specular"] = UniformFunction( [](ofShader* _shader) {
+        _shader->setUniform1f("u_specular", specular);
+    });
+
+    m_uniformsFunctions["u_shadow"] = UniformFunction( [](ofShader* _shader) {
+        _shader->setUniform1f("u_shadow", shadowRate);
+    });
+
 
     m_uniformsFunctions["u_delta"] = UniformFunction( [this](ofShader* _shader) {
         double now = ofGetElapsedTimef();
